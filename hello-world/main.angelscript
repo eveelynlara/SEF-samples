@@ -1,8 +1,13 @@
-﻿//#include "eth_util.angelscript"
+#include "../SEF/SEF.angelscript"
+
+#include "src/StartScreenState.angelscript"
 
 void main()
 {
-	SetFixedHeight(720.0f);
+	sef::init(720.0f /*virtual height*/, 0xFF222222, @customInitialState);
+}
 
-	LoadScene("empty", "", "");
+sef::BaseState@ customInitialState()
+{
+	return StartScreenState();
 }
