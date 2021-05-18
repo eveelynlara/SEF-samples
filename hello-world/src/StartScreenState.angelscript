@@ -12,6 +12,10 @@ class StartScreenState : sef::BaseState
 	void onCreated() override
 	{
 		BaseState::onCreated();
+
+		StartScreenLayer startScreenLayer();
+		addLayer(@startScreenLayer);
+		setCurrentLayer(startScreenLayer.getName());
 	}
 
 	void onUpdate() override
