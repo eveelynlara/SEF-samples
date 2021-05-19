@@ -1,14 +1,10 @@
 class StartScreenLayer : sef::UISchedulerLayer
 {
-	private sef::UIButton@ m_startButton;
-
 	StartScreenLayer()
 	{
 		super("StartScreenLayer", true /*iterable*/, "start");
 
 		sef::parseLayerFileAndAddTo(GetResourceDirectory() + "layers/StartScreen.layer", this, sef::StaticFont());		
-
-		@m_startButton = cast<sef::UIButton>(getElement("start"));
 
 		LoadSoundEffect("soundfx/button.mp3");
 		LoadSoundEffect("soundfx/click.mp3");
@@ -18,11 +14,9 @@ class StartScreenLayer : sef::UISchedulerLayer
 	{
 		UISchedulerLayer::update();
 
-		if (m_startButton.isPressed())
+		if (isButtonPressed("options"))
 		{
-			#if TESTING
-				print("Start button pressed!");
-			#endif
+			sef::util::callLayer(OptionsLayer(sef::util::getBaseStateLayerManager(), @this));
 		}
 	}
 }

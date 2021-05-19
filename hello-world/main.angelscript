@@ -2,6 +2,7 @@
 
 #include "src/StartScreenState.angelscript"
 #include "src/StartScreenLayer.angelscript"
+#include "src/OptionsLayer.angelscript"
 
 void main()
 {
