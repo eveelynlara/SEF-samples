@@ -1,6 +1,6 @@
 class GameState : sef::BaseState
 {
-	sef::UILayer@ m_hudLayer;
+	sef::UISchedulerLayer@ m_hudLayer;
 
 	ETHEntity@ m_spaceShip;
 
@@ -15,7 +15,7 @@ class GameState : sef::BaseState
 		BaseState::onCreated();
 
 		// insert ui layer
-		@m_hudLayer = sef::UILayer("HUD", false /*iterable*/);
+		@m_hudLayer = sef::UISchedulerLayer("HUD", false /*iterable*/);
 		addLayer(@m_hudLayer);
 		setCurrentLayer(m_hudLayer.getName());
 
@@ -34,6 +34,17 @@ class GameState : sef::BaseState
 		textElement.setName("instructions");
 
 		m_hudLayer.insertElement(@textElement);
+
+		// add back button
+		sef::UIButton backButton(
+			"sprites/back-button.png",
+			vector2(0.053f) /*position*/,
+			vector2(0.0f),
+			0.5f /*scale*/);
+
+		backButton.setName("back");
+
+		m_hudLayer.insertElement(@backButton);
 
 		// add space ship to scene
 		AddEntity("space_ship.ent", vector3(GetScreenSize() / 2.0f, 0.0f), m_spaceShip);
@@ -69,5 +80,16 @@ class GameState : sef::BaseState
 
 		const float speed = sef::TimeManager.unitsPerSecond(400.0f);
 		m_spaceShip.AddToPositionXY(normalize(movementDir) * speed);
+
+		// check back request
+		if (m_hudLayer.isButtonPressed("back") || sef::input::global.getBackState() == KS_HIT)
+		{
+			m_hudLayer.scheduleOperation("backToStartScreen");
+		}
+
+		if (m_hudLayer.getScheduledOperation() == "backToStartScreen")
+		{
+			sef::StateManager.setState(StartScreenState());
+		}
 	}
 }
