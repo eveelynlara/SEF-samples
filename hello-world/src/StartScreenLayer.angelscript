@@ -21,6 +21,11 @@ class StartScreenLayer : sef::UISchedulerLayer
 
 		if (isButtonPressed("start"))
 		{
+			scheduleOperation("start");
+		}
+
+		if (getScheduledOperation() == "start")
+		{
 			sef::StateManager.setState(GameState());
 		}
 	}
