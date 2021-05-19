@@ -45,6 +45,9 @@ back
 	dismissEffect = slide-left;
 	dismissDelay = 0;
 	dismissEffectDuration = 500;
+
+	hitSoundEffect = soundfx/click.mp3;
+	releaseSoundEffect = soundfx/button.mp3;
 }
 
 text
