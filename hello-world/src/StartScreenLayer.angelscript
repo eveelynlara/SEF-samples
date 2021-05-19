@@ -18,5 +18,10 @@ class StartScreenLayer : sef::UISchedulerLayer
 		{
 			sef::util::callLayer(OptionsLayer(sef::util::getBaseStateLayerManager(), @this));
 		}
+
+		if (isButtonPressed("start"))
+		{
+			sef::StateManager.setState(GameState());
+		}
 	}
 }

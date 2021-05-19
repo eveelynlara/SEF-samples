@@ -3,6 +3,7 @@
 #include "src/StartScreenState.angelscript"
 #include "src/StartScreenLayer.angelscript"
 #include "src/OptionsLayer.angelscript"
+#include "src/GameState.angelscript"
 
 void main()
 {
