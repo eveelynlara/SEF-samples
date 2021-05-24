@@ -15,7 +15,7 @@ title
 	scale = 1.0;
 
 	appearEffect = zoom-out;
-	appearDelay = 1000;
+	appearDelay = 400;
 	appearEffectDuration = 1700;
 
 	dismissEffect = zoom-in;
@@ -43,7 +43,7 @@ start
 	textFont = Verdana24_shadow.fnt;
 
 	appearEffect = zoom-out;
-	appearDelay = 2000;
+	appearDelay = 1000;
 	appearEffectDuration = 600;
 
 	hitSoundEffect = soundfx/click.mp3;
@@ -76,7 +76,7 @@ options
 
 	appearEffect = slide-right;
 	appearEffectDuration = 800;
-	appearDelay = 2200;
+	appearDelay = 1200;
 
 	hitSoundEffect = soundfx/click.mp3;
 	releaseSoundEffect = soundfx/button.mp3;

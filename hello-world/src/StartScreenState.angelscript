@@ -10,6 +10,8 @@ class StartScreenState : sef::BaseState
 	{
 		BaseState::onCreated();
 
+		curtain::fadeIn(500, 0);
+
 		// insert ui layer
 		StartScreenLayer startScreenLayer();
 		addLayer(@startScreenLayer);

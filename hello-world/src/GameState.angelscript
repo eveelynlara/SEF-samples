@@ -14,6 +14,8 @@ class GameState : sef::BaseState
 	{
 		BaseState::onCreated();
 
+		curtain::fadeIn(500, 0);
+
 		// insert ui layer
 		@m_hudLayer = sef::UISchedulerLayer("HUD", false /*iterable*/);
 		addLayer(@m_hudLayer);
@@ -43,6 +45,7 @@ class GameState : sef::BaseState
 			0.5f /*scale*/);
 
 		backButton.setName("back");
+		backButton.setDismissEffect(sef::uieffects::createFadeOutEffect(600));
 
 		m_hudLayer.insertElement(@backButton);
 
@@ -85,6 +88,7 @@ class GameState : sef::BaseState
 		if (m_hudLayer.isButtonPressed("back") || sef::input::global.getBackState() == KS_HIT)
 		{
 			m_hudLayer.scheduleOperation("backToStartScreen");
+			curtain::fadeOut(500, 0);
 		}
 
 		if (m_hudLayer.getScheduledOperation() == "backToStartScreen")

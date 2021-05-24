@@ -5,6 +5,8 @@
 #include "src/OptionsLayer.angelscript"
 #include "src/GameState.angelscript"
 
+#include "src/Curtain.angelscript"
+
 void main()
 {
 	sef::init(720.0f /*virtual height*/, 0xFF222222, @customInitialState);

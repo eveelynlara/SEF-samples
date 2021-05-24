@@ -22,6 +22,7 @@ class StartScreenLayer : sef::UISchedulerLayer
 		if (isButtonPressed("start"))
 		{
 			scheduleOperation("start");
+			curtain::fadeOut(500, 0);
 		}
 
 		if (getScheduledOperation() == "start")
