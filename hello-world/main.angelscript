@@ -6,6 +6,7 @@
 #include "src/GameState.angelscript"
 
 #include "src/Curtain.angelscript"
+#include "src/CameraController.angelscript"
 
 void main()
 {

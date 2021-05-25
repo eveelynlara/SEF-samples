@@ -2,6 +2,8 @@ class GameState : sef::BaseState
 {
 	sef::UISchedulerLayer@ m_hudLayer;
 
+	CameraController m_cameraController;
+
 	ETHEntity@ m_spaceShip;
 
 	GameState()
@@ -15,6 +17,10 @@ class GameState : sef::BaseState
 		BaseState::onCreated();
 
 		curtain::fadeIn(500, 0);
+
+		SetParallaxIntensity(6.0f);
+
+		addController(@m_cameraController);
 
 		// insert ui layer
 		@m_hudLayer = sef::UISchedulerLayer("HUD", false /*iterable*/);
@@ -51,6 +57,15 @@ class GameState : sef::BaseState
 
 		// add space ship to scene
 		AddEntity("space_ship.ent", vector3(GetScreenSize() / 2.0f, 0.0f), m_spaceShip);
+
+		// fill scene with spaceships
+		for (uint t = 0; t < 80; t++)
+		{
+			ETHEntity@ ship;
+			const vector3 pos(randF(GetScreenSize().x), randF(GetScreenSize().y), randF(-20.0f, -80.0f));
+			AddEntity("space_ship.ent", pos, 0.0f, ship, "decor_space_ship", 0.9f);
+			ship.SetColor(vector3(randF(1.5f), randF(1.5f), randF(1.5f)) * 0.3f);
+		}
 	}
 
 	void onUpdate() override
@@ -83,6 +98,8 @@ class GameState : sef::BaseState
 
 		const float speed = sef::TimeManager.unitsPerSecond(400.0f);
 		m_spaceShip.AddToPositionXY(normalize(movementDir) * speed);
+
+		m_cameraController.setDest(m_spaceShip.GetPositionXY());
 
 		// check back request
 		if (m_hudLayer.isButtonPressed("back") || sef::input::global.getBackState() == KS_HIT)
