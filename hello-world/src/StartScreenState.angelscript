@@ -14,6 +14,8 @@ class StartScreenState : sef::BaseState
 		StartScreenLayer startScreenLayer();
 		addLayer(@startScreenLayer);
 		setCurrentLayer(startScreenLayer.getName());
+
+		curtain::fadeIn(500, 0);
 	}
 
 	void onUpdate() override
